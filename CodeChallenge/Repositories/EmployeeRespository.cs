@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CodeChallenge.Models;
@@ -30,6 +29,29 @@ namespace CodeChallenge.Repositories
         public Employee GetById(string id)
         {
             return _employeeContext.Employees.SingleOrDefault(e => e.EmployeeId == id);
+        }
+
+        public int GetReportsCountByEmployeeId(string id)
+        {
+            var employeeAndReports = _employeeContext.Employees
+                .Include(employee => employee.DirectReports)
+                .ThenInclude(reports => reports.DirectReports)
+                .SingleOrDefault(e => e.EmployeeId == id);
+
+            return employeeAndReports != null ? employeeAndReports.DirectReports.Sum(GetReportsCountRecursive) : 0;
+        }
+
+        private int GetReportsCountRecursive(Employee employee)
+        {
+            // Set to 1 to include the employee itself in the count
+            var count = 1; 
+
+            if (employee.DirectReports != null)
+            {
+                count += employee.DirectReports.Sum(GetReportsCountRecursive);
+            }
+
+            return count;
         }
 
         public Task SaveAsync()
