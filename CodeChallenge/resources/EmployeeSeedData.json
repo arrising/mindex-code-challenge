@@ -49,5 +49,34 @@
     "lastName": "Harrison",
     "position": "Developer III",
     "department": "Engineering"
+  },
+  {
+    "employeeId": "6feaba03-3b62-40de-87c2-e50806109929",
+    "firstName": "Robert",
+    "lastName": "Plant",
+    "position": "Finance Manager",
+    "department": "Finance",
+    "directReports": [
+      {
+        "employeeId": "7f2628c6-21e8-4e1d-bd52-83d015acc1e7"
+      },
+      {
+        "employeeId": "7f2628c6-21e8-4e1d-bd52-83d015acc1e7"
+      }
+    ]
+  },
+  {
+    "employeeId": "7f2628c6-21e8-4e1d-bd52-83d015acc1e7",
+    "firstName": "Jimmy",
+    "lastName": "Page",
+    "position": "Accountant",
+    "department": "Finance"
+  },
+  {
+    "employeeId": "99cfd8d1-b9bb-4705-b898-7d9c2e56b379",
+    "firstName": "John",
+    "lastName": "Bonham",
+    "position": "Accountant",
+    "department": "Finance"
   }
 ]

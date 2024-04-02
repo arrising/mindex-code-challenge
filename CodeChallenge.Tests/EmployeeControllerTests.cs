@@ -90,18 +90,18 @@ public class EmployeeControllerTests
         // Arrange
         var update = new Employee
         {
-            EmployeeId = TestEmployeeIds.PeteBest,
+            EmployeeId = TestEmployeeIds.JohnBonham,
             Department = "Engineering",
-            FirstName = "Pete",
-            LastName = "Best",
-            Position = "Developer VI",
+            FirstName = "John",
+            LastName = "Bonham",
+            Position = "Developer VI"
         };
         var expected = new Employee
         {
-            EmployeeId = TestEmployeeIds.PeteBest,
+            EmployeeId = TestEmployeeIds.JohnBonham,
             Department = "Engineering",
-            FirstName = "Pete",
-            LastName = "Best",
+            FirstName = "John",
+            LastName = "Bonham",
             Position = "Developer VI"
         };
 
@@ -144,7 +144,6 @@ public class EmployeeControllerTests
         // Assert
         response.Should().HaveStatusCode(HttpStatusCode.NotFound);
     }
-
     [TestMethod]
     public async Task GetReportingStructureByEmployeeId_HasSubReports_Ok()
     {
