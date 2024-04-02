@@ -1,15 +1,13 @@
-﻿using CodeChallenge.Models;
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using CodeChallenge.Models;
 
-namespace CodeChallenge.Repositories
+namespace CodeChallenge.Repositories;
+
+public interface IEmployeeRepository
 {
-    public interface IEmployeeRepository
-    {
-        Employee GetById(String id);
-        int GetReportsCountByEmployeeId(string id);
-        Employee Add(Employee employee);
-        Employee Remove(Employee employee);
-        Task SaveAsync();
-    }
+    Employee GetById(string id);
+    int GetReportsCountByEmployeeId(string id);
+    Employee Add(Employee employee);
+    Employee Remove(Employee employee);
+    Task SaveAsync();
 }

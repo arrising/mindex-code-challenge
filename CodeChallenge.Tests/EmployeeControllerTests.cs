@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CodeChallenge.Models;
+using CodeChallenge.Tests.Integration.Constants;
 using CodeCodeChallenge.Tests.Integration.Extensions;
 using CodeCodeChallenge.Tests.Integration.Helpers;
 using FluentAssertions;
@@ -62,7 +63,7 @@ public class EmployeeControllerTests
     public async Task GetEmployeeById_Returns_Ok()
     {
         // Arrange
-        var employeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f";
+        var employeeId = TestEmployeeIds.JohnLennon;
         var expected = new Employee
         {
             EmployeeId = employeeId,
@@ -80,7 +81,6 @@ public class EmployeeControllerTests
 
         var employee = response.DeserializeContent<Employee>();
 
-        // Ignores Direct Reports
         employee.Should().BeEquivalentTo(expected, options => options.ExcludingMissingMembers());
     }
 
@@ -90,7 +90,7 @@ public class EmployeeControllerTests
         // Arrange
         var update = new Employee
         {
-            EmployeeId = "03aa1462-ffa9-4978-901b-7c001562cf6f",
+            EmployeeId = TestEmployeeIds.PeteBest,
             Department = "Engineering",
             FirstName = "Pete",
             LastName = "Best",
@@ -98,7 +98,7 @@ public class EmployeeControllerTests
         };
         var expected = new Employee
         {
-            EmployeeId = "03aa1462-ffa9-4978-901b-7c001562cf6f",
+            EmployeeId = TestEmployeeIds.PeteBest,
             Department = "Engineering",
             FirstName = "Pete",
             LastName = "Best",
@@ -107,7 +107,7 @@ public class EmployeeControllerTests
 
         var requestContent = new JsonSerialization().ToJson(update);
 
-        // Execute
+        // Act
         var putResponse = await _httpClient.PutAsync($"api/employee/{update.EmployeeId}",
             new StringContent(requestContent, Encoding.UTF8, "application/json"));
 
@@ -145,12 +145,11 @@ public class EmployeeControllerTests
         response.Should().HaveStatusCode(HttpStatusCode.NotFound);
     }
 
-
     [TestMethod]
     public async Task GetReportingStructureByEmployeeId_HasSubReports_Ok()
     {
         // Arrange
-        var employeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f";
+        var employeeId = TestEmployeeIds.JohnLennon;
         var expected = new ReportingStructure
         {
             Employee = new Employee
@@ -179,7 +178,7 @@ public class EmployeeControllerTests
     public async Task GetReportingStructureByEmployeeId_NoSubReports_Ok()
     {
         // Arrange
-        var employeeId = "03aa1462-ffa9-4978-901b-7c001562cf6f";
+        var employeeId = TestEmployeeIds.RingoStarr;
         var expected = new ReportingStructure
         {
             Employee = new Employee
@@ -208,7 +207,7 @@ public class EmployeeControllerTests
     public async Task GetReportingStructureByEmployeeId_NoReports_Ok()
     {
         // Arrange
-        var employeeId = "b7839309-3348-463b-a7e3-5de1c168beb3";
+        var employeeId = TestEmployeeIds.PaulMcCartney;
         var expected = new ReportingStructure
         {
             Employee = new Employee

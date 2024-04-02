@@ -10,10 +10,10 @@ namespace CodeChallenge.Repositories
 {
     public class EmployeeRespository : IEmployeeRepository
     {
-        private readonly EmployeeContext _employeeContext;
+        private readonly EmployeeDbContext _employeeContext;
         private readonly ILogger<IEmployeeRepository> _logger;
 
-        public EmployeeRespository(ILogger<IEmployeeRepository> logger, EmployeeContext employeeContext)
+        public EmployeeRespository(ILogger<IEmployeeRepository> logger, EmployeeDbContext employeeContext)
         {
             _employeeContext = employeeContext;
             _logger = logger;

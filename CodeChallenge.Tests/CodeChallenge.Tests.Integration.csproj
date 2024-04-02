@@ -13,10 +13,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="resources\EmployeeSeedData.json">
+    <None Remove="resources\CompensationSeedData.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="resources\CompensationSeedData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="resources\CompensationSeedData.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+	  <Content Include="resources\EmployeeSeedData.json">
+		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
   </ItemGroup>
 
   <ItemGroup>

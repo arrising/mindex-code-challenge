@@ -41,9 +41,11 @@ namespace CodeChallenge.Config
 
         private void AddServices(IServiceCollection services)
         {
-
+            services.AddScoped<ICompensationService, CompensationService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IReportingStructureService, ReportingStructureService>();
+
+            services.AddScoped<ICompensationRepository, CompensationRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRespository>();
 
             services.AddControllers();
@@ -51,9 +53,9 @@ namespace CodeChallenge.Config
 
         private void SeedEmployeeDB()
         {
-            new EmployeeDataSeeder(
-                new EmployeeContext(
-                    new DbContextOptionsBuilder<EmployeeContext>().UseInMemoryDatabase("EmployeeDB").Options
+            new EmployeeDbDataSeeder(
+                new EmployeeDbContext(
+                    new DbContextOptionsBuilder<EmployeeDbContext>().UseInMemoryDatabase("EmployeeDB").Options
             )).Seed().Wait();
         }
     }
